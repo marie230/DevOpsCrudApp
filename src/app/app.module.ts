@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
-import {MatTableModule} from '@angular/material';
+import { MatTableModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -17,4 +17,5 @@ import {MatTableModule} from '@angular/material';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
