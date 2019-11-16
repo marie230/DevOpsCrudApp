@@ -1,4 +1,7 @@
-# CrudApp
+# DevOpsCrudApp
+
+This is a MEAN-Stack application created for the semester task of the module DevOps in the Master Program "Computer Science for Digital Media" at Beuth University of Applied Sciences Berlin.  
+Visit the [Wiki](https://github.com/marie230/DevOpsCrudApp/wiki) for more information about the project, including the [Concept](https://github.com/marie230/DevOpsCrudApp/wiki/Konzept) of the project! (in German)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.
 
