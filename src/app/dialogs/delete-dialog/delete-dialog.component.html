@@ -1,0 +1,13 @@
+<div class="mat-typography">
+  <h1 mat-dialog-title>Delete {{data.name}}</h1>
+  <div mat-dialog-content>
+    <p>Are you sure you want to delete the extraordinary {{data.name}}?</p>
+
+<!--    <img class="dialog__image" [src]="data.imageUrl"/>-->
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button color="warn" [mat-dialog-close]="true">Delete</button>
+    <button mat-button [mat-dialog-close]="undefined">Cancel</button>
+  </div>
+</div>

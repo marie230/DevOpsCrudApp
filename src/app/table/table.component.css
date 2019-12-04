@@ -1,8 +1,13 @@
-table {
-  width: 100%;
+.table__width {
+  width: 80%;
 }
 
-.container {
-  width: 50%;
-  margin: 2em 2em;
+.table__image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.hidden {
+  display: none;
 }

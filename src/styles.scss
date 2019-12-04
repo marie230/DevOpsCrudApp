@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html {
+  height: 100%
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+table {
+  width: 100%;
+}
+
+.container {
+  margin: 4em 4em;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+@for $i from 0 through 10 {
+  $value: #{$i}rem;
+
+  .padding-top-#{$i} {
+    padding-top: $value;
+  }
+
+  .padding-bottom-#{$i} {
+    padding-bottom: $value;
+  }
+
+  .padding-left-#{$i} {
+    padding-left: $value;
+  }
+
+  .padding-right-#{$i} {
+    padding-right: $value;
+  }
+
+  .margin-top-#{$i} {
+    margin-top: $value;
+  }
+
+  .margin-bottom-#{$i} {
+    margin-bottom: $value;
+  }
+
+  .margin-left-#{$i} {
+    margin-left: $value;
+  }
+
+  .margin-right-#{$i} {
+    margin-right: $value;
+  }
+}
