@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { HeroService } from './shared/hero.service';
+import { HeroService } from './shared/services/hero-service/hero.service';
 import { AddDialogComponent } from './dialogs/add-dialog/add-dialog.component';
 import { EditDialogComponent } from './dialogs/edit-dialog/edit-dialog.component';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';

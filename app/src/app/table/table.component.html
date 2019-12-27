@@ -1,7 +1,7 @@
 <div class="margin-bottom-1">
-  <button mat-button color="accent" matTooltip="Add Hero" (click)="addItem()">
+  <button mat-button color="accent" matTooltip="Add hero" (click)="addItem()">
     <mat-icon aria-label="Add">add</mat-icon>
-    ADD
+    Add
   </button>
 </div>
 
@@ -9,7 +9,7 @@
   No results from the server, please try again later!
 </div>
 
-<div class="table__width mat-elevation-z8"  [class.hidden]="!isListEmpty">
+<div class="table__width mat-elevation-z8" [class.hidden]="!isListEmpty">
   <table mat-table [dataSource]="dataSource">
 
     <!-- Position Column -->
@@ -41,11 +41,11 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Action</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-icon-button matTooltip="Edit Hero" color="accent" (click)="editItem(row)">
+        <button mat-icon-button matTooltip="Edit hero" color="accent" (click)="editItem(row)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
-        <button mat-icon-button matTooltip="Delete Hero" color="accent" (click)="deleteHero(row)">
+        <button mat-icon-button matTooltip="Delete hero" color="accent" (click)="deleteHero(row)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </td>

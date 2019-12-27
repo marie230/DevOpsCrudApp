@@ -9,6 +9,8 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class EditDialogComponent implements OnInit {
 
+  heroName: string;
+
   formControl = new FormControl('', [
     Validators.required
   ]);
@@ -17,14 +19,11 @@ export class EditDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.heroName = this.data.name;
   }
 
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Required field' :
       '';
-  }
-
-  submit() {
-    // empty stuff
   }
 }
