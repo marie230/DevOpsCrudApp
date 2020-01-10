@@ -1,0 +1,21 @@
+---
+# file for installing node and mongodb on target environments
+
+- hosts: all
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+
+  vars:
+    #variable needed during node installation
+    temp_folder: /tmp
+
+  tasks:
+    # Install prerequisites
+    - include: tasks/prerequisites.yml
+
+    # Install MongoDB
+    - include: tasks/mongodb.yml
+
+    # Install Node.js
+    - include: tasks/nodejs.yml

@@ -10,6 +10,9 @@
 # dependencies
 /app/node_modules
 
+# vagrant files
+/infrastructure/.vagrant
+
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json

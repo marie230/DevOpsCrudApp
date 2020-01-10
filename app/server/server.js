@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use('/api', heroes);
 
 // Connect to Database
+// origin gleich für frontend und backend, frontend kommt über fqdn (url)
 mongoose.connect('mongodb://localhost/crudAppDb', {useNewUrlParser: true, useUnifiedTopology: true});
 
 mongoose.Promise = global.Promise;

@@ -1,0 +1,14 @@
+---
+# tasks file for mongodb
+
+- name: MongoDB | Install MongoDB
+  apt:
+    name: mongodb
+    state: present
+    update_cache: yes
+
+- name: MongoDB | Ensure that MongoDB is running
+  service:
+    name: mongodb
+    enabled: yes
+    state: started

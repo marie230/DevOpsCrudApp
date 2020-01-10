@@ -1,0 +1,8 @@
+---
+# File: nodejs.yml
+
+- name: NodeJS | Install NodeJS
+  apt:
+    name: nodejs
+    state: present
+    update_cache: yes

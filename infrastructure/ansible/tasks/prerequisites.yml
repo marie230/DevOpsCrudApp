@@ -1,0 +1,6 @@
+---
+# Description: Install MEAN stack prerequisites
+
+- name: Update Cache
+  apt:
+    update_cache: yes

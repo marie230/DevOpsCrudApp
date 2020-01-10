@@ -32,3 +32,28 @@ Run `ng lint` to execute the TypeScript linter via [TSLint](https://palantir.git
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Project structure
+
+```bash
+.                                              
+├── app                       # source files 
+│   ├── db                     # database models               
+│   ├── routes                 # backend routing logic
+│   ├── server                 # backend server configuration
+│   ├── dist                   # bundled files to deploy            
+│   ├── src                    # app files 
+│       ├── app                 # app with all components
+│       ├── main.ts             # bootstrapping configuration
+│       └── test.ts             # test configuration
+│   ├── karma.conf.js          # test framework configuration
+│   ├── tsconfig.json
+│   ├── yarn.lock
+│   └── package.json   
+├── infrastructure
+│   ├── ansible                # playbooks to configue vm's
+│       └── tasks               # tasks used in the ansible playbooks
+│   ├── Jenkinsfile            # Jenkins pipeline
+│   └── Vagrantfile            # provisioning of VMs
+└── README.md 
+```
