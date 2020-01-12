@@ -1,7 +1,19 @@
 ---
-- name: Create config
-  template: src=seed-config.xml.j2 dest="~jenkins/config.xml"
-  register: jenkins_config_change
+#- name: Check for "pipeline" directory in ~jenkins/jobs directory
+#  stat:
+#    path: ~jenkins/var/lib/jobs
+#  register: pipeline
+#
+#- name: Create "pipeline" directory if not exists
+#  file:
+#    path: ~jenkins/jobs
+#    state: directory
+#    mode: 755
+#  when: pipeline.stat.exists == false
+#
+#- name: Create config.xml in "pipeline" directory
+#  template: src=config.xml dest="~jenkins/jobs/pipeline/"
+#  register: jenkins_config_change
 
 - name: Get list of jobs
   uri:

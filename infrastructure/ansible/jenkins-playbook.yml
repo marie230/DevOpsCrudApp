@@ -3,9 +3,9 @@
 
 - name: Install Jenkins Role and create pipeline
   hosts: all
+  become: yes
+  become_method: sudo
 
   roles:
   - role: roles/ansible-role-java
-    become: yes
-  - role: roles/ansible-role-jenkins
-    become: yes
+  - role: roles/jenkins
