@@ -1,0 +1,68 @@
+---
+# Optional method of pinning a specific version of Jenkins and/or overriding the
+# default Jenkins packaging URL.
+# jenkins_version: "1.644"
+# jenkins_pkg_url: "https://www.example.com"
+
+# Change this to `latest` to update Jenkins if a newer version is available.
+jenkins_package_state: present
+
+jenkins_connection_delay: 5
+jenkins_connection_retries: 60
+jenkins_home: /var/lib/jenkins
+jenkins_hostname: localhost
+jenkins_http_port: 8080
+jenkins_jar_location: /opt/jenkins-cli.jar
+jenkins_url_prefix: ""
+jenkins_java_options: "-Djenkins.install.runSetupWizard=false"
+
+jenkins_plugins: [git, delivery-pipeline-plugin, workflow-aggregator, pipeline-npm, github-pullrequest, ansible]
+jenkins_plugins_state: present
+jenkins_plugin_updates_expiration: 86400
+jenkins_plugin_timeout: 30
+jenkins_plugins_install_dependencies: true
+jenkins_updates_url: "https://updates.jenkins.io"
+
+jenkins_admin_username: admin
+jenkins_admin_password: admin
+jenkins_admin_password_file: ""
+
+jenkins_process_user: jenkins
+jenkins_process_group: "{{ jenkins_process_user }}"
+
+jenkins_init_changes:
+  - option: "JENKINS_ARGS"
+    value: "--prefix={{ jenkins_url_prefix }}"
+  - option: "{{ jenkins_java_options_env_var }}"
+    value: "{{ jenkins_java_options }}"
+
+# If Jenkins is behind a proxy, configure this.
+jenkins_proxy_host: ""
+jenkins_proxy_port: ""
+jenkins_proxy_noproxy:
+  - "127.0.0.1"
+  - "localhost"
+
+jenkins_java_args: -Djava.awt.headless=true -Djenkins.install.runSetupWizard=false
+jenkins_java_extra_args: ""
+jenkins_defaults_file: /etc/default/jenkins
+jenkins_seed_name: pipeline-seed
+jenkins_seed_template: seed-config.xml.j2
+jenkins_job_template: jobs.groovy.j2
+jenkins_approved_signatures:
+  - method hudson.plugins.git.GitSCM getBranches
+  - method hudson.plugins.git.GitSCM getUserRemoteConfigs
+  - method hudson.plugins.git.GitSCMBackwardCompatibility getExtensions
+jenkins_acl_approved_signatures: []
+jenkins_slave_agent_port: 0
+jenkins_cloud_configs: ""
+jenkins_admin_address: nobody@example.com
+#jenkins_url:
+
+jenkins_ssh_private_key: jenkins-id_rsa
+jenkins_ssh_public_key: jenkins-id_rsa.pub
+jenkins_git_user: marie230
+jenkins_git_host: git.example.com
+jenkins_git_path: git
+jenkins_git_repositories:
+      - https://github.com/marie230/DevOpsCrudApp

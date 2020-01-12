@@ -1,0 +1,9 @@
+---
+# file for installing jenkins on jenkins vm
+
+- name: Install Jenkins Role and create pipeline
+  hosts: all
+
+  roles:
+   - role: roles/jenkins
+     become: yes
