@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'development', credentialsId: '627f4c3c-4def-41de-a6c3-7ba3e9621e13', url: 'https://github.com/marie230/DevOpsCrudApp'
+                git branch: 'development', url: 'https://github.com/marie230/DevOpsCrudApp'
             }
         }
         stage('Install') {
