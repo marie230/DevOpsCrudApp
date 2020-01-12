@@ -5,5 +5,7 @@
   hosts: all
 
   roles:
-   - role: roles/jenkins
-     become: yes
+  - role: roles/ansible-role-java
+    become: yes
+  - role: roles/ansible-role-jenkins
+    become: yes

@@ -66,4 +66,4 @@
 - include_tasks: plugins.yml
 
 # Create Pipeline for GitHub Repository
-- include_tasks: create-pipeline.yml
+#- include_tasks: create-pipeline.yml
