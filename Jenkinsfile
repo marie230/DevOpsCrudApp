@@ -9,7 +9,7 @@ pipeline {
                     extensions: [[$class: 'RelativeTargetDirectory',
                         relativeTargetDir: 'app']],
                     submoduleCfg: [],
-                    userRemoteConfigs: [[url: 'https://github.com/marie230/DevOpsCrudApp']]])
+                    userRemoteConfigs: [[url: 'https://github.com/marie230/DevOpsCrudApp.git']]])
             }
         }
         stage('Install') {
