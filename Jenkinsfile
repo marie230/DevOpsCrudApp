@@ -29,7 +29,9 @@ pipeline {
         }
         stage ('Build') {
             steps {
-                sh 'npm run build'
+                dir('app') {
+                    sh 'npm run build'
+                }
             }
         }
         stage ('Make Zip') {
