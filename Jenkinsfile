@@ -8,9 +8,7 @@ pipeline {
         }
         stage('Install') {
             steps {
-                dir ('app') {
                     sh 'npm install'
-                }
             }
         }
         stage('TSlint') {
