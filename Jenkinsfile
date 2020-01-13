@@ -3,12 +3,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'development', url: 'https://github.com/marie230/DevOpsCrudApp'
+                git branch: 'development', url: 'https://github.com/marie230/DevOpsCrudApp',  relativeTargetDir: 'app'
             }
         }
         stage('Install') {
             steps {
-                relativeTargetDir('app')
                 sh 'npm install'
             }
         }
