@@ -23,7 +23,11 @@ pipeline {
         stage('Test') {
             steps {
                 dir('app') {
-                    sh 'npm test --watch=false --no-progress --browsers=ChromeHeadless'
+                    try {
+                        sh 'npm test --watch=false --no-progress --browsers=ChromeHeadless'
+                    } catch (e) {
+                        currentBuild.result = 'UNSTABLE'
+                    }
                 }
             }
         }
