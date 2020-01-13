@@ -1,8 +1,8 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.36">
   <actions>
-    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.4.0"/>
-    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.4.0">
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.5.0"/>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@1.5.0">
       <jobProperties/>
       <triggers/>
       <parameters/>
@@ -19,13 +19,13 @@
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
       <triggers>
         <hudson.triggers.SCMTrigger>
-          <spec></spec>
+          <spec>H/1 * * * *</spec>
           <ignorePostCommitHooks>false</ignorePostCommitHooks>
         </hudson.triggers.SCMTrigger>
       </triggers>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.76">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.78">
     <scm class="hudson.plugins.git.GitSCM" plugin="git@4.0.0">
       <configVersion>2</configVersion>
       <userRemoteConfigs>
@@ -34,9 +34,6 @@
         </hudson.plugins.git.UserRemoteConfig>
       </userRemoteConfigs>
       <branches>
-        <hudson.plugins.git.BranchSpec>
-          <name>*/master</name>
-        </hudson.plugins.git.BranchSpec>
         <hudson.plugins.git.BranchSpec>
           <name>*/development</name>
         </hudson.plugins.git.BranchSpec>

@@ -1,8 +1,14 @@
 ---
-# File: nodejs.yml
+# Install NodeJS and npm package manager
 
 - name: NodeJS | Install NodeJS
   apt:
     name: nodejs
+    state: present
+    update_cache: yes
+
+- name: NodeJS | Install npm
+  apt:
+    name: npm
     state: present
     update_cache: yes
