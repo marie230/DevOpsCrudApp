@@ -6,9 +6,3 @@
     name: nodejs
     state: present
     update_cache: yes
-
-- name: NodeJS | Install npm
-  apt:
-    name: npm
-    state: present
-    update_cache: yes

@@ -8,19 +8,23 @@ pipeline {
         }
         stage('Install') {
             steps {
-               dir('app') {
+                dir('app') {
                     sh 'npm install'
                 }
             }
         }
         stage('TSlint') {
             steps {
-                sh 'ng lint'
+                dir('app') {
+                    sh 'ng lint'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh 'ng test --watch=false --no-progress --browsers=ChromeHeadless'
+                dir('app') {
+                    sh 'ng test --watch=false --no-progress --browsers=ChromeHeadless'
+                }
             }
         }
         stage ('Build') {
@@ -30,7 +34,9 @@ pipeline {
         }
         stage ('Make Zip') {
             steps {
+                dir('app') {
                 sh 'zip crud-app.zip dist'
+                }
             }
         }
         stage ('Deploy') {
