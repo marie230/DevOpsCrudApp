@@ -15,7 +15,9 @@ pipeline {
         }
         stage('TSlint') {
             steps {
+                dir('app') {
                     sh 'npm run lint'
+                }
             }
         }
         stage('Test') {
