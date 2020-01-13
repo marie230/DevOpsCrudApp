@@ -3,7 +3,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'development', url: 'https://github.com/marie230/DevOpsCrudApp',  relativeTargetDir: 'app'
+            checkout([$class: 'GitSCM',
+                    branches: [[name: '*/development']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [[$class: 'RelativeTargetDirectory',
+                        relativeTargetDir: 'app']],
+                    submoduleCfg: [],
+                    userRemoteConfigs: [[url: 'https://github.com/marie230/DevOpsCrudApp']]])
             }
         }
         stage('Install') {
