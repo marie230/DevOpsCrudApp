@@ -24,19 +24,28 @@
   changed_when: false
   check_mode: false
 
-- name: Create Pipeline | Install python-jenkins
+- name: Create Pipelines | Install python-jenkins
   pip:
     name: python-jenkins
     state: present
 
-- name: Create Pipeline | Install lxml
+- name: Create Pipelines | Install lxml
   pip:
     name: lxml
     state: present
 
-- jenkins_job:
-    config: "{{ lookup('file', 'templates/pipeline-config.xml') }}"
-    name: CrudAppPipeline
+- name: Create Pipelines | Create development environment pipeline
+  jenkins_job:
+    config: "{{ lookup('file', 'templates/development-pipeline-config.xml') }}"
+    name: Development
+    password: admin
+    url: http://localhost:8080
+    user: admin
+
+- name: Create Pipelines | Create production environment pipeline
+  jenkins_job:
+    config: "{{ lookup('file', 'templates/production-pipeline-config.xml') }}"
+    name: Production
     password: admin
     url: http://localhost:8080
     user: admin
