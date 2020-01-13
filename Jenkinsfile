@@ -4,6 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'development', url: 'https://github.com/marie230/DevOpsCrudApp'
+                relativeTargetDir('app')
             }
         }
         stage('Install') {
