@@ -15,13 +15,13 @@ pipeline {
         }
         stage('TSlint') {
             steps {
-                    sh 'ng lint'
+                    sh 'npm run lint'
             }
         }
         stage('Test') {
             steps {
                 dir('app') {
-                    sh 'ng test --watch=false --no-progress --browsers=ChromeHeadless'
+                    sh 'npm test --watch=false --no-progress --browsers=ChromeHeadless'
                 }
             }
         }
