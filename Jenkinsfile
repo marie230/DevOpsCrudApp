@@ -15,9 +15,7 @@ pipeline {
         }
         stage('TSlint') {
             steps {
-                dir('app') {
                     sh 'ng lint'
-                }
             }
         }
         stage('Test') {
