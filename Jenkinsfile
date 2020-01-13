@@ -38,7 +38,9 @@ pipeline {
         }
         stage ('Deploy') {
             steps {
-               echo 'TODO'
+                dir('app') {
+                    echo 'TODO'
+                }
             }
         }
         stage ('Done') {

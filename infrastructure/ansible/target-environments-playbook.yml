@@ -19,3 +19,7 @@
 
     # Install Node.js
     - include: tasks/nodejs.yml
+
+    # Install Nginx & pm2
+    - include: tasks/nginx.yml
+

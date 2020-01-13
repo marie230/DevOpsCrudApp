@@ -1,12 +1,17 @@
 ---
-# tasks file for nginx
+# tasks file for nginx & pm2
 
-- name: Nginx | Install Nginx
-    apt:
-      name: nginx
-      state: present
+- name: Nginx & PM2 | Install Nginx
+  apt:
+    name: nginx
+    state: present
 
-- name: Nginx | Start Nginx
-      service:
-        name: nginx
-        state: started
+- name: Nginx & PM2 | Start Nginx
+  service:
+     name: nginx
+     state: started
+
+- name: Nginx & PM2 | Install PM2
+  npm:
+    name: pm2
+    global: yes
