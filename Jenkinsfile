@@ -23,7 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 dir('app') {
-                    sh 'npm test --watch=false --no-progress --browsers=ChromeHeadless'
+                    sh 'npm test --watch=false --no-progress'
                 }
             }
         }
