@@ -44,8 +44,8 @@ pipeline {
                              playbook: 'ansible/deploy-to-development-environment.yml',
                              inventory: 'ansible/inventory.ini',
                              credentialsId: 'sample-ssh-key',
-                             colorized: true)
-                        }
+                             colorized: true
+                        )
                     }
                 }
             }
