@@ -42,7 +42,7 @@ pipeline {
                     ansiColor('xterm') {
                         ansiblePlaybook(
                              playbook: 'ansible/deploy-to-development-environment.yml',
-                             inventory: 'ansible/inventory.ini',
+                             inventory: 'ansible/inventory',
                              credentialsId: 'sample-ssh-key',
                              colorized: true
                         )
