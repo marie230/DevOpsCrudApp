@@ -38,8 +38,15 @@ pipeline {
         }
         stage ('Deploy') {
             steps {
-                dir('app') {
-                    echo 'TODO'
+                dir('infrastructure') {
+                    ansiColor('xterm') {
+                        ansiblePlaybook(
+                             playbook: 'ansible/deploy-to-development-environment.yml',
+                             inventory: 'ansible/inventory.ini',
+                             credentialsId: 'sample-ssh-key',
+                             colorized: true)
+                        }
+                    }
                 }
             }
         }

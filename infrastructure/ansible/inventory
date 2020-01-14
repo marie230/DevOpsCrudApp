@@ -1,0 +1,15 @@
+[development]
+192.168.33.27
+[app_prod]
+192.168.33.28
+[jenkins]
+192.168.33.29
+[monitoring]
+192.168.33.30
+
+ansible_user=vagrant
+ansible_ssh_pass=vagrant
+ansible_ssh_host=192.168.33.27
+ansible_ssh_port=22
+ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+
