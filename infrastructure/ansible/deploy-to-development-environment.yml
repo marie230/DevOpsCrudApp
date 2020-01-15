@@ -1,23 +1,22 @@
 ---
-- hosts: app-dev
-  remote_user: ansible
-  become: yes
-  become_method: sudo
+- hosts: development
+  become: true
 
-- name: Check for /var/www directory
-  stat:
-    path: /var/www
-  register: var_wwww
+  tasks:
+    - name: Check for /var/www directory
+      stat:
+        path: /var/www
+      register: var_wwww
 
-- name: Create directory if not exists
-  file:
-    path: /var/www
-    state: directory
-    mode: 755
-  when: var_www.stat.exists == false
+    - name: Create directory if not exists
+      file:
+        path: /var/www
+        state: directory
+        mode: 755
+      when: var_www.stat.exists == false
 
-- name: Copy files to remote host
-  copy:
-    src: dist/
-    dest: /var/www/crud
-    mode: 755
+    - name: Copy files to remote host
+      copy:
+        src: dist/
+        dest: /var/www/
+        mode: 755
