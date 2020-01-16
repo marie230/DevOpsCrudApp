@@ -43,7 +43,7 @@ pipeline {
                         ansiblePlaybook(
                              playbook: 'ansible/deploy-to-development-environment.yml',
                              inventory: 'ansible/inventory',
-                             credentialsId: 'sample-ssh-key',
+                             credentialsId: '/home/vagrant/.ssh/id_rsa',
                              colorized: true
                         )
                     }
