@@ -1,5 +1,7 @@
 ---
 - hosts: development
+  become: true
+  become_method: sudo
 
   tasks:
     - name: Check for /var/www/apps directory
@@ -25,14 +27,14 @@
 #      args:
 #        chdir:  /var/www/apps
 
-    - name: Unzip crud-app on development host and create crud-app directory
-      unarchive:
-        src:  /var/www/apps/crud-app.zip
-        dest: /var/www/apps
-        remote_src: yes
-        mode: 755
+#    - name: Unzip crud-app on development host and create crud-app directory
+#      unarchive:
+#        src:  /var/www/apps/crud-app.zip
+#        dest: /var/www/apps
+#        remote_src: yes
+#        mode: 755
 
-    - name: Start app with PM2
-      command: pm2 start npm -- start
-      args:
-        chdir:  /var/www/apps/dist
+#    - name: Start app with PM2
+#      command: pm2 start npm -- start
+#      args:
+#        chdir:  /var/www/apps/dist
