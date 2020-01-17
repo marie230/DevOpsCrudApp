@@ -1,7 +1,5 @@
 ---
 - hosts: development
-  become: true
-  become_method: sudo
 
   tasks:
     - name: Check for /var/www/apps directory
