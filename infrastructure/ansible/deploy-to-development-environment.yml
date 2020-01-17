@@ -21,7 +21,7 @@
         mode: 755
 
     - name: Remove crud-app directory if exists
-      command: rm -R -f crud-app || echo no crud-app
+      command: rm -R -f dist || echo no crud-app dist directory
       args:
         chdir:  /var/www/apps
 
@@ -32,4 +32,7 @@
         remote_src: yes
         mode: 755
 
-# pm2 starten....
+    - name: Start app with PM2
+      command: pm2 start npm -- start
+      args:
+        chdir:  /var/www/apps/dist

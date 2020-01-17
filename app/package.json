@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently \"npm run client\"  \"npm run server\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "client": "ng serve",
     "server": "nodemon server/server.js"
   },
   "private": true,
@@ -22,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
     "body-parser": "^1.19.0",
+    "concurrently": "^5.0.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "hammerjs": "^2.0.8",
