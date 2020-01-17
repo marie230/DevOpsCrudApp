@@ -16,19 +16,22 @@
         mode: 755
       when: apps_dir.stat.exists == false
 
-    - name: Copy files to development host
+    - name: Copy crud-app.zip to development host
       copy:
         src: /var/lib/jenkins/jobs/Development/workspace/app/crud-app.zip
         dest: /var/www/apps
         mode: 755
 
-    - name: Unzip app on development host
+    - name: Remove crud-app directory if exists
+      command: rm -R -f crud-app || echo no crud-app
+      args:
+        chdir:  /var/www/apps
+
+    - name: Unzip crud-app on development host and create crud-app directory
       unarchive:
         src:  /var/www/apps/crud-app.zip
         dest: /var/www/apps
         remote_src: yes
         mode: 755
-
-# cdn
 
 # pm2 starten....
