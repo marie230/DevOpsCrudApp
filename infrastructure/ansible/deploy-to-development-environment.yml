@@ -21,10 +21,10 @@
         dest: /var/www/apps
         mode: 755
 
-    - name: Remove crud-app directory if exists
-      command: rm -R -f dist || echo no crud-app dist directory
-      args:
-        chdir:  /var/www/apps
+#    - name: Remove crud-app directory if exists
+#      command: rm -R -f dist || echo no crud-app dist directory
+#      args:
+#        chdir:  /var/www/apps
 
     - name: Unzip crud-app on development host and create crud-app directory
       unarchive:
