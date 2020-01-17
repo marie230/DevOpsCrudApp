@@ -1,8 +1,8 @@
 [development]
-192.168.33.27 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh
+192.168.33.27 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 [production]
-192.168.33.28 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh
+192.168.33.28 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 [jenkins]
-192.168.33.29 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh
+192.168.33.29 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 [monitoring]
-192.168.33.30 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh
+192.168.33.30 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh ansible_ssh_common_args='-o StrictHostKeyChecking=no'
