@@ -40,9 +40,9 @@ pipeline {
             steps {
                 dir('infrastructure') {
                     ansiblePlaybook(
-                             playbook: 'ansible/deploy-to-development-environment.yml',
-                             inventory: 'ansible/inventory',
-                             credentialsId: '/home/vagrant/.ssh/id_rsa',
+                        playbook: 'ansible/deploy-to-development-environment.yml',
+                        inventory: 'ansible/inventory',
+                        credentialsId: '/.vagrant/machines/development/virtualbox/private_key',
                     )
                 }
             }
