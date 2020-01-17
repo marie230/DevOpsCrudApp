@@ -18,6 +18,6 @@
 
     - name: Copy files to remote host
       copy:
-        src: ../dist/
+        src: /var/lib/jenkins/jobs/Development/workspace/app
         dest: /var/www/
         mode: 755
