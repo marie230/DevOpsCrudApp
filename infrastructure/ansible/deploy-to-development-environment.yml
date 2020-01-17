@@ -1,6 +1,7 @@
 ---
 - hosts: development
   become: true
+  become_method: sudo
 
   tasks:
     - name: Check for /var/www directory
@@ -17,6 +18,6 @@
 
     - name: Copy files to remote host
       copy:
-        src: dist/
+        src: ../dist/
         dest: /var/www/
         mode: 755
