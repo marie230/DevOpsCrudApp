@@ -1,5 +1,6 @@
 ---
 - hosts: development
+  become: true
 
   tasks:
     - name: Check for /var/www/apps directory
