@@ -6,7 +6,7 @@
     - name: Check for /var/www directory
       stat:
         path: /var/www
-      register: var_wwww
+      register: var_www
 
     - name: Create directory if not exists
       file:

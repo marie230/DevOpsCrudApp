@@ -39,14 +39,11 @@ pipeline {
         stage ('Deploy') {
             steps {
                 dir('infrastructure') {
-                    ansiColor('xterm') {
-                        ansiblePlaybook(
+                    ansiblePlaybook(
                              playbook: 'ansible/deploy-to-development-environment.yml',
                              inventory: 'ansible/inventory',
                              credentialsId: '/home/vagrant/.ssh/id_rsa',
-                             colorized: true
-                        )
-                    }
+                    )
                 }
             }
         }
