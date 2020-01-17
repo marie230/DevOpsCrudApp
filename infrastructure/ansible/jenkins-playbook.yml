@@ -2,7 +2,7 @@
 # file for installing jenkins on jenkins vm
 
 - name: Install Jenkins Role and create pipeline
-  hosts: all
+  hosts: jenkins # oder localhost
   become: yes
   become_method: sudo
 

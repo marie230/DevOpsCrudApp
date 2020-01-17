@@ -1,4 +1,8 @@
-development ansible_host=192.168.33.27 ansible_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-production ansible_host=192.168.33.28 ansible_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-jenkins ansible_host=192.168.33.29 ansible_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
-monitoring ansible_host=192.168.33.30 ansible_user=vagrant ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+[development]
+192.168.33.27 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh
+[production]
+192.168.33.28 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh
+[jenkins]
+192.168.33.29 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh
+[monitoring]
+192.168.33.30 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant ansible_connection=ssh
