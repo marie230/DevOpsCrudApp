@@ -18,6 +18,6 @@
 
     - name: Copy files to remote host
       copy:
-        src: /var/lib/jenkins/jobs/Development/workspace/app
+        src: /var/lib/jenkins/jobs/Development/workspace/app/crud-app.zip
         dest: /var/www/
         mode: 755
