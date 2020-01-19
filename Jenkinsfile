@@ -32,7 +32,7 @@ pipeline {
         stage ('Make Zip') {
             steps {
                 dir('app') {
-                sh 'zip crud-app.zip dist'
+                sh 'zip -r crud-app.zip dist/'
                 }
             }
         }
