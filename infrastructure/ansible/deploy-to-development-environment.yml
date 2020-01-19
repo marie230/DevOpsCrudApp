@@ -1,6 +1,6 @@
 ---
 - name: Deploy application to development environment
-- hosts: development
+  hosts: development
 
   tasks:
     - name: Check for /var/www/apps directory
@@ -8,7 +8,7 @@
         path: /var/www/apps
       register: apps_dir
 
-    - name: Create directory if not exists
+    - name: Create /var/www/apps directory if not exists
       file:
         path: /var/www/apps
         state: directory
