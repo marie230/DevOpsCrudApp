@@ -92,7 +92,7 @@
       become: yes
 
     - name: Start server with PM2
-      command: pm2 restart server.js || pm2 start server.js
+      command:  pm2 restart server || pm2 start server.js --name server'
       args:
         chdir:  /var/www/apps/server
       become: yes
