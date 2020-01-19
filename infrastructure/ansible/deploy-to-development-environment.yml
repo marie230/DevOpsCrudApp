@@ -92,7 +92,7 @@
       become: yes
 
     - name: Start app with PM2
-      command: pm2 start npm -- start
+      command: pm2 start server.js
       args:
         chdir:  /var/www/apps/server
       become: yes
