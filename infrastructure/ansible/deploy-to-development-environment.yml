@@ -89,8 +89,10 @@
     - name: Install packages based on package.json
       npm:
         path: /var/www/apps/server
+      become: yes
 
     - name: Start app with PM2
       command: pm2 start npm -- start
       args:
         chdir:  /var/www/apps/server
+      become: yes
