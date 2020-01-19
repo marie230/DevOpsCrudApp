@@ -4,6 +4,18 @@
   become_method: sudo
 
   tasks:
+    - name: Check for /var/www directory
+      stat:
+        path: /var/www
+      register: www_dir
+
+    - name: Create directory if not exists
+      file:
+        path: /var/www
+        state: directory
+        mode: 755
+      when: www_dir.stat.exists == false
+
     - name: Check for /var/www/apps directory
       stat:
         path: /var/www/apps
