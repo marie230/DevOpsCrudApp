@@ -2,16 +2,15 @@
 # file for installing jenkins on jenkins vm
 
 - name: Install Jenkins Role and create pipeline
-  hosts: jenkins # oder localhost
+  hosts: jenkins
   become: yes
   become_method: sudo
 
   tasks:
     # Install Node.js
     - include: tasks/nodejs.yml
-    # Install mongoDB
-    - include: tasks/mongodb.yml
 
   roles:
-  - role: roles/ansible-role-java
+  - role: geerlingguy.java
+    become: yes
   - role: roles/jenkins

@@ -2,6 +2,10 @@
 - name: Deploy application to development environment
   hosts: development
 
+  vars:
+    server_name: hero-app.de
+    root_dir: /var/www/apps/dist
+
   tasks:
     - name: Check for /var/www/apps directory
       stat:
@@ -36,7 +40,28 @@
         remote_src: yes
       become: yes
 
-#    - name: Start app with PM2
-#      command: pm2 start npm -- start
-#      args:
-#        chdir:  /var/www/apps/dist
+    - name: Add config template to nginx available sites
+      template:
+        src: nginx.conf
+        dest: "/etc/nginx/sites-available/{{ server_name }}.conf"
+      become: yes
+
+    - name: Enable config template from nginx available sites
+      file:
+        src: "/etc/nginx/sites-available/{{ server_name }}.conf"
+        dest: "/etc/nginx/sites-enabled/{{ server_name }}.conf"
+        state: link
+      become: yes
+
+    - name: Add enabled nginx site to /etc/hosts
+      lineinfile:
+        dest: /etc/hosts
+        regexp: "{{ server_name }}"
+        line: "127.0.0.1 {{ server_name }}"
+      become: yes
+
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted
+      become: yes

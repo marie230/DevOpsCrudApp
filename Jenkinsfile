@@ -42,7 +42,7 @@ pipeline {
                     ansiblePlaybook(
                         playbook: 'ansible/deploy-to-development-environment.yml',
                         inventory: 'ansible/inventory',
-                        credentialsId: '/.vagrant/machines/development/virtualbox/private_key',
+                        disableHostKeyChecking: true
                     )
                 }
             }
