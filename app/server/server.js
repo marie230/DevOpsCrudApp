@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const heroes = require('../routes/heroes');
+const heroes = require('./routes/heroes');
 
 const app = express();
 app.set('port', process.env.PORT || 1234);

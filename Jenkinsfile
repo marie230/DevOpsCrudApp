@@ -33,6 +33,7 @@ pipeline {
             steps {
                 dir('app') {
                 sh 'zip -r crud-app.zip dist/'
+                sh 'zip -r server.zip server/'
                 }
             }
         }

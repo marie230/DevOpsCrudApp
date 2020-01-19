@@ -65,3 +65,32 @@
         name: nginx
         state: restarted
       become: yes
+
+    - name: Copy server.zip dir to development host
+        copy:
+          src: /var/lib/jenkins/jobs/Development/workspace/app/server.zip
+          dest: /var/www/apps
+          mode: 755
+        become: yes
+
+    - name: Remove crud-app server directory if exists
+      file:
+        path: /var/www/apps/server
+        state: absent
+      become: yes
+
+    - name: Unzip crud-app server
+      unarchive:
+        src:  /var/www/apps/server.zip
+        dest: /var/www/apps
+        remote_src: yes
+      become: yes
+
+    - name: Install packages based on package.json
+      npm:
+        path: /var/www/apps/server
+
+    - name: Start app with PM2
+      command: pm2 start npm -- start
+      args:
+        chdir:  /var/www/apps/server
