@@ -67,11 +67,11 @@
       become: yes
 
     - name: Copy server.zip dir to development host
-        copy:
-          src: /var/lib/jenkins/jobs/Development/workspace/app/server.zip
-          dest: /var/www/apps
-          mode: 755
-        become: yes
+      copy:
+        src: /var/lib/jenkins/jobs/Development/workspace/app/server.zip
+        dest: /var/www/apps
+        mode: 755
+      become: yes
 
     - name: Remove crud-app server directory if exists
       file:
