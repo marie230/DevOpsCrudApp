@@ -5,6 +5,7 @@
   apt:
     name: nginx
     state: present
+    update_cache: yes
 
 - name: Nginx & PM2 | Start Nginx
   service:
