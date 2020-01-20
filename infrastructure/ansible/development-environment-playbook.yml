@@ -1,5 +1,5 @@
 ---
-# file for installing node and mongodb on target environments
+# file for installing node, mongodb, nginx, pm2 & sshpass on development environment
 
 - hosts: development
   remote_user: ansible
@@ -11,15 +11,15 @@
     temp_folder: /tmp
 
   tasks:
-    # Install prerequisites
+    # Install Prerequisites
     - include: tasks/prerequisites.yml
 
     # Install MongoDB
     - include: tasks/mongodb.yml
 
-    # Install Node.js
+    # Install NodeJS
     - include: tasks/nodejs.yml
 
-    # Install Nginx & pm2
+    # Install Nginx & PM2
     - include: tasks/nginx.yml
 

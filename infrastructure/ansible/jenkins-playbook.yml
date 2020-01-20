@@ -7,10 +7,11 @@
   become_method: sudo
 
   tasks:
-    # Install Node.js
+    # Install prerequisites
+    - include: tasks/prerequisites.yml
+    # Install NodeJS
     - include: tasks/nodejs.yml
 
   roles:
-  - role: geerlingguy.java
-    become: yes
+  - role: roles/java
   - role: roles/jenkins

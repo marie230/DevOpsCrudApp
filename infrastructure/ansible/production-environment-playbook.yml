@@ -1,7 +1,7 @@
 ---
-# file for installing node and mongodb on target environments
+# file for installing node, mongodb, nginx, pm2 & sshpass on production environment
 
-- hosts: all
+- hosts: production
   remote_user: ansible
   become: yes
   become_method: sudo
@@ -17,9 +17,9 @@
     # Install MongoDB
     - include: tasks/mongodb.yml
 
-    # Install Node.js
+    # Install NodeJS
     - include: tasks/nodejs.yml
 
-    # Install Nginx & pm2
+    # Install Nginx & PM2
     - include: tasks/nginx.yml
 

@@ -1,10 +1,10 @@
 ---
-dependencies:
-  - roles/java
+dependencies: []
 
 galaxy_info:
+  role_name: java
   author: geerlingguy
-  description: Jenkins CI
+  description: Java for Linux
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
@@ -13,17 +13,30 @@ galaxy_info:
       versions:
         - 6
         - 7
+        - 8
     - name: Fedora
       versions:
         - all
     - name: Debian
       versions:
-        - all
+        - wheezy
+        - jessie
+        - stretch
+        - buster
     - name: Ubuntu
       versions:
-        - all
+        - precise
+        - trusty
+        - xenial
+        - bionic
+    - name: FreeBSD
+      versions:
+        - 10.2
   galaxy_tags:
     - development
-    - packaging
-    - jenkins
-    - ci
+    - system
+    - web
+    - java
+    - jdk
+    - openjdk
+    - oracle

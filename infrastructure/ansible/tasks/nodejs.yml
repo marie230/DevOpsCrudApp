@@ -1,6 +1,15 @@
 ---
 # Install NodeJS and npm package manager
 
+- name: NodeJS | Download NodeJS setup script
+  get_url:
+    url: https://deb.nodesource.com/setup_10.x
+    dest: /etc
+    mode: 755
+
+- name: NodeJS | Set up NodeJS
+  command: /etc/setup_10.x
+
 - name: NodeJS | Install NodeJS
   apt:
     name: nodejs

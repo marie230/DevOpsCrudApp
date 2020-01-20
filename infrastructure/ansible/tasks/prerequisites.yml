@@ -1,6 +1,12 @@
 ---
 # Description: Install MEAN stack prerequisites
 
-- name: Update Cache
+- name: Prerequisites | Update Cache
   apt:
+    update_cache: yes
+
+- name: Prerequisites | Install SSHPass
+  apt:
+    name: sshpass
+    state: present
     update_cache: yes
