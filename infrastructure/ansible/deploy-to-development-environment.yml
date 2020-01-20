@@ -3,7 +3,7 @@
   hosts: development
 
   vars:
-    server_name: hero-app.de
+    server_name: hero-app-development.de
     root_dir: /var/www/apps/dist
 
   tasks:

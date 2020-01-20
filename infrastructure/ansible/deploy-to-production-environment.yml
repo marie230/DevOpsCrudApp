@@ -3,7 +3,7 @@
   hosts: production
 
   vars:
-    server_name: hero-app.de
+    server_name: hero-app-production.de
     root_dir: /var/www/apps/dist
 
   tasks:
