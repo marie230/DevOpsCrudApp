@@ -41,7 +41,7 @@ pipeline {
             steps {
                 dir('infrastructure') {
                     ansiblePlaybook(
-                        playbook: 'ansible/deploy-to-development-environment.yml',
+                        playbook: 'ansible/deploy-to-production-environment.yml',
                         inventory: 'ansible/inventory',
                         disableHostKeyChecking: true
                     )
