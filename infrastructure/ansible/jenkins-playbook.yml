@@ -9,8 +9,6 @@
   tasks:
     # Install prerequisites
     - include: tasks/prerequisites.yml
-    # Install NodeJS
-    - include: tasks/nodejs.yml
 
   roles:
   - role: roles/java

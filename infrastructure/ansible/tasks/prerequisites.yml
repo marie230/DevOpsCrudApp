@@ -10,3 +10,60 @@
     name: sshpass
     state: present
     update_cache: yes
+
+- name: Prerequisites | Install Prometheus Node Exporter package
+  apt:
+    name: prometheus-node-exporter
+
+- name: Prerequisites | Ensure the Node Exporter is started and starts at host boot
+  service:
+    name: prometheus-node-exporter
+    enabled: true
+    state: started
+
+- name: Prerequisites | Check if the service emits metrics
+  uri:
+    url: http://127.0.0.1:9100/metrics
+    method: GET
+    status_code: 200
+
+#- name: Download package
+#  get_url:
+#    url: https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz
+#    dest: /home/vagrant/nodeexporter.tar.gz
+#
+#- name: Unpack tar
+#  unarchive:
+#    src: /home/vagrant/nodeexporter.tar.gz
+#    dest: /home/vagrant
+#    remote_src: yes
+#
+#- name: Copy binary
+#  copy:
+#    src: /home/vagrant/node_exporter-0.18.1.linux-amd64/node_exporter
+#    dest: /usr/local/bin/node_exporter
+#    remote_src: yes
+#    mode: a+x
+#
+#- name: Create user
+#  user:
+#    name: node_exporter
+#    system: yes
+#    shell: /bin/false
+#
+#- name: Copy the Node Exporter systemd service file
+#  template:
+#    src: monitoring/node_exporter.service.j2
+#    dest: /etc/systemd/system/node_exporter.service
+#
+#- name: Template systemd service
+#  systemd:
+#    daemon_reload: yes
+#    name: node_exporter
+#    state: started
+#
+#- name: Prerequisites | Check if the service emits metrics
+#  uri:
+#    url: http://127.0.0.1:9100/metrics
+#    method: GET
+#    status_code: 200
