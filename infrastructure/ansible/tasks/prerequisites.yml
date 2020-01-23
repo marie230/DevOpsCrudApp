@@ -5,6 +5,12 @@
   apt:
     update_cache: yes
 
+- name: Prerequisites | Install Git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
 - name: Prerequisites | Install SSHPass
   apt:
     name: sshpass

@@ -1,7 +1,8 @@
 # ===========================================================================
 # Do prometheus server specific setup only on the monitoring server
 # ===========================================================================
-- hosts: monitoring
+- name: Install & configure monitoring with Prometheus & Grafana
+  hosts: monitoring
   become: true
 
   tasks:
