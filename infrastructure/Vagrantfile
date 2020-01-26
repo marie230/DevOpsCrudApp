@@ -77,7 +77,7 @@ Vagrant.configure("2") do |config|
 
         jenkins.vm.provider "virtualbox" do |vb|
             vb.name = "jenkins-vm"
-            vb.memory = 2048
+            vb.memory = 4098
             vb.cpus = 2
         end
         jenkins.vm.provision "shell", inline: <<-SHELL

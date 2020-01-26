@@ -96,6 +96,7 @@
       args:
         chdir:  /var/www/apps/server
       ignore_errors: yes
+      become: yes
 
       # load balancing: "-i 2" starts pm2 with 2 instances
       # see pm2 docs: https://pm2.io/docs/runtime/guide/load-balancing/
@@ -103,3 +104,4 @@
       command:  pm2 start server.js -i 2
       args:
         chdir:  /var/www/apps/server
+      become: yes
