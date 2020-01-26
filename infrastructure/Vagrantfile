@@ -1,133 +1,36 @@
 Vagrant.configure("2") do |config|
 
-    # VM development environment
-    config.vm.define "development" do |development|
-        development.vm.box = "peru/ubuntu-18.04-desktop-amd64"
-        development.vm.box_version = "20190901.01"
-        development.vm.hostname = "development"
-        development.vm.network :private_network, ip: "192.168.33.27"
-        development.vm.synced_folder ".", "/vagrant", type: "nfs"
-        development.ssh.insert_key = false
 
-        development.vm.provider "virtualbox" do |vb|
-            vb.name = "development-environment"
-            vb.memory = 2048
-            vb.cpus = 2
-        end
-        development.vm.provision "shell", inline: <<-SHELL
-            echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
-            sudo apt-get update -y
-            sudo apt-get install -y curl
-            SHELL
 
-        if Vagrant::Util::Platform.windows?
-            development.vm.provision :guest_ansible do |ansible|
-                ansible.verbose = "vvv"
-                ansible.playbook = "ansible/development-environment-playbook.yml"
-            end
-        else
-            development.vm.provision :ansible do |ansible|
-                ansible.verbose = "vvv"
-                ansible.playbook = "ansible/development-environment-playbook.yml"
-            end
-        end
-    end
+    # Jenkins & Monitoring VM
+    config.vm.define "jenkinsMonitoring" do |jenkinsMonitoring|
+        jenkinsMonitoring.vm.box = "peru/ubuntu-18.04-desktop-amd64"
+        jenkinsMonitoring.vm.box_version = "20190901.01"
+        jenkinsMonitoring.vm.hostname = "jenkinsMonitoring"
+        jenkinsMonitoring.vm.network :private_network, ip: "192.168.33.29"
+        jenkinsMonitoring.vm.synced_folder ".", "/vagrant", type: "nfs"
+        jenkinsMonitoring.ssh.insert_key = false
 
-    # VM production environment
-    config.vm.define "production" do |production|
-        production.vm.box = "peru/ubuntu-18.04-desktop-amd64"
-        production.vm.box_version = "20190901.01"
-        production.vm.hostname = "production"
-        production.vm.network :private_network, ip: "192.168.33.28"
-        production.vm.synced_folder ".", "/vagrant", type: "nfs"
-        production.ssh.insert_key = false
-
-        production.vm.provider "virtualbox" do |vb|
-            vb.name = "production-environment"
-            vb.memory = 2048
-            vb.cpus = 2
-        end
-        production.vm.provision "shell", inline: <<-SHELL
-            echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
-            sudo apt-get update -y
-            sudo apt-get install -y curl
-            SHELL
-
-        if Vagrant::Util::Platform.windows?
-            production.vm.provision :guest_ansible do |ansible|
-                ansible.verbose = "vvv"
-                ansible.playbook = "ansible/production-environment-playbook.yml"
-            end
-        else
-            production.vm.provision :ansible do |ansible|
-                ansible.verbose = "vvv"
-                ansible.playbook = "ansible/production-environment-playbook.yml"
-            end
-        end
-    end
-
-    # Jenkins VM
-    config.vm.define "jenkins" do |jenkins|
-        jenkins.vm.box = "peru/ubuntu-18.04-desktop-amd64"
-        jenkins.vm.box_version = "20190901.01"
-        jenkins.vm.hostname = "jenkins"
-        jenkins.vm.network :private_network, ip: "192.168.33.29"
-        jenkins.vm.synced_folder ".", "/vagrant", type: "nfs"
-        jenkins.ssh.insert_key = false
-
-        jenkins.vm.provider "virtualbox" do |vb|
-            vb.name = "jenkins-vm"
+        jenkinsMonitoring.vm.provider "virtualbox" do |vb|
+            vb.name = "jenkins-monitoring-vm"
             vb.memory = 4098
             vb.cpus = 2
         end
-        jenkins.vm.provision "shell", inline: <<-SHELL
+        jenkinsMonitoring.vm.provision "shell", inline: <<-SHELL
             echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
             sudo apt-get update -y
             sudo apt-get install -y curl
             SHELL
 
         if Vagrant::Util::Platform.windows?
-            jenkins.vm.provision :guest_ansible do |ansible|
+            jenkinsMonitoring.vm.provision :guest_ansible do |ansible|
                 ansible.verbose = "vvv"
-                ansible.playbook = "ansible/jenkins-playbook.yml"
+                ansible.playbook = "ansible/jenkins-monitoring-playbook.yml"
             end
         else
-            jenkins.vm.provision :ansible do |ansible|
+            jenkinsMonitoring.vm.provision :ansible do |ansible|
                 ansible.verbose = "vvv"
-                ansible.playbook = "ansible/jenkins-playbook.yml"
-            end
-        end
-    end
-
-    # Monitoring VM
-    config.vm.define "monitoring" do |monitoring|
-        monitoring.vm.box = "peru/ubuntu-18.04-desktop-amd64"
-        monitoring.vm.box_version = "20190901.01"
-        monitoring.vm.hostname = "monitoring"
-        monitoring.vm.network :private_network, ip: "192.168.33.29"
-        monitoring.vm.synced_folder ".", "/vagrant", type: "nfs"
-        monitoring.ssh.insert_key = false
-
-        monitoring.vm.provider "virtualbox" do |vb|
-            vb.name = "monitoring-vm"
-            vb.memory = 2048
-            vb.cpus = 2
-        end
-        monitoring.vm.provision "shell", inline: <<-SHELL
-            echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
-            sudo apt-get update -y
-            sudo apt-get install -y curl
-            SHELL
-
-        if Vagrant::Util::Platform.windows?
-            monitoring.vm.provision :guest_ansible do |ansible|
-                ansible.verbose = "vvv"
-                ansible.playbook = "ansible/monitoring-playbook.yml"
-            end
-        else
-            monitoring.vm.provision :ansible do |ansible|
-                ansible.verbose = "vvv"
-                ansible.playbook = "ansible/monitoring-playbook.yml"
+                ansible.playbook = "ansible/jenkins-monitoring-playbook.yml"
             end
         end
     end

@@ -5,54 +5,55 @@
   apt:
     update_cache: yes
 
-- name: Prerequisites | Install Git
+- name: Prerequisites - Git | Install Git
   apt:
     name: git
     state: present
     update_cache: yes
 
-- name: Prerequisites | Install SSHPass
+- name: Prerequisites -SSHPass | Install SSHPass
   apt:
     name: sshpass
     state: present
     update_cache: yes
 
-- name: Download package
+# the Node-Exporter is needed for monitoring with prometheus & grafana
+- name: Prerequisites - Node-Exporter | Download package
   get_url:
     url: https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz
     dest: /home/vagrant/nodeexporter.tar.gz
 
-- name: Unpack tar
+- name: Prerequisites - Node-Exporter | Unpack tar
   unarchive:
     src: /home/vagrant/nodeexporter.tar.gz
     dest: /home/vagrant
     remote_src: yes
 
-- name: Copy binary
+- name: Prerequisites - Node-Exporter | Copy binary
   copy:
     src: /home/vagrant/node_exporter-0.18.1.linux-amd64/node_exporter
     dest: /usr/local/bin/node_exporter
     remote_src: yes
     mode: a+x
 
-- name: Create user
+- name: Prerequisites - Node-Exporter | Create user
   user:
     name: node_exporter
     system: yes
     shell: /bin/false
 
-- name: Copy the Node Exporter systemd service file
+- name: Prerequisites - Node-Exporter | Copy the Node Exporter systemd service file
   template:
     src: monitoring/node_exporter.service.j2
     dest: /etc/systemd/system/node_exporter.service
 
-- name: Template systemd service
+- name: Prerequisites - Node-Exporter | Template systemd service
   systemd:
     daemon_reload: yes
     name: node_exporter
     state: started
 
-- name: Prerequisites | Check if the service emits metrics
+- name: Prerequisites - Node-Exporter | Check if the service emits metrics
   uri:
     url: http://127.0.0.1:9100/metrics
     method: GET

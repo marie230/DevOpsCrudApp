@@ -15,10 +15,6 @@ scrape_configs:
     static_configs:
       - targets: ['192.168.33.28:9100']
 
-  - job_name: 'jenkins'
+  - job_name: 'jenkinsMonitoring'
     static_configs:
       - targets: ['192.168.33.29:9100']
-
-  - job_name: 'monitoring'
-    static_configs:
-      - targets: ['192.168.33.30:9100']

@@ -1,0 +1,19 @@
+---
+# file for installing jenkins on jenkins vm
+
+- name: Install Jenkins, create pipeline, install & configure monitoring with Prometheus & Grafana
+  hosts: jenkinsMonitoring
+  become: yes
+  become_method: sudo
+
+  tasks:
+    # Install prerequisites
+    - include: tasks/prerequisites.yml
+    # Install prerequisites
+    - include: tasks/nodejs.yml
+    # Install & configure monitoring with Prometheus & Grafana
+    - include: tasks/monitoring.yml
+
+  roles:
+    - role: roles/java
+    - role: roles/jenkins

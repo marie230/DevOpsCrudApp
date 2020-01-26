@@ -91,7 +91,7 @@
         path: /var/www/apps/server
       become: yes
 
-    - name: Delete old PM2 server process if present
+    - name: Stop old PM2 server process if present
       command: pm2 stop server.js
       args:
         chdir:  /var/www/apps/server

@@ -9,8 +9,8 @@
 
 - name: Nginx & PM2 | Start Nginx
   service:
-     name: nginx
-     state: started
+    name: nginx
+    state: started
 
 - name: Nginx & PM2 | Install PM2
   npm:

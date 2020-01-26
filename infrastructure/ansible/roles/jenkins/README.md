@@ -124,7 +124,7 @@ If you are running Jenkins behind a proxy server, configure these options approp
 ## Example Playbook
 
 ```yaml
-- hosts: jenkins
+- hosts: jenkinsMonitoring
   vars:
     jenkins_hostname: jenkins.example.com
   roles:
