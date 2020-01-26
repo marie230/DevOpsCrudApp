@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+    }
     stages {
         stage('Install') {
             steps {
@@ -38,25 +41,10 @@ pipeline {
             }
         }
         stage ('Deploy') {
-            when{
-                branch 'development'
-            }
             steps {
                 dir('infrastructure') {
                     ansiblePlaybook(
-                        playbook: 'ansible/deploy-to-development-environment.yml',
-                        inventory: 'ansible/inventory',
-                        disableHostKeyChecking: true
-                    )
-                }
-            }
-            when{
-                branch 'master'
-            }
-            steps {
-                dir('infrastructure') {
-                    ansiblePlaybook(
-                        playbook: 'ansible/deploy-to-production-environment.yml',
+                        playbook: 'ansible/deploy-to-' + GIT_BRANCH + '-environment.yml',
                         inventory: 'ansible/inventory',
                         disableHostKeyChecking: true
                     )
