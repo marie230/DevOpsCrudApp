@@ -99,7 +99,7 @@
       become: yes
 
     - name: Deploy to DEVELOPMENT environment | Delete old PM2 server process if present
-      command: pm2 delete all
+      command: pm2 kill
       args:
         chdir:  /var/www/apps/server
       ignore_errors: yes
