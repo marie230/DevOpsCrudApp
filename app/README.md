@@ -3,7 +3,40 @@
 This is a MEAN-Stack application created for the semester task of the module DevOps in the Master Program "Computer Science for Digital Media" at Beuth University of Applied Sciences Berlin.  
 Visit the [Wiki](https://github.com/marie230/DevOpsCrudApp/wiki) for more information about the project, including the [Concept](https://github.com/marie230/DevOpsCrudApp/wiki/Konzept) of the project! (in German)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.
+## Setup for deployment with Vagrant VM's 
+
+### Requirements
+
+All of the listed requirements in this section have to be installed depending on your operating system:
+
+All operating systems:
+- [Git](https://git-scm.com/downloads)
+- [NodeJS](https://nodejs.org/en/download/) with npm
+- [Vagrant](https://www.vagrantup.com/downloads.html)
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+
+If your host operating system **is any other than** Windows: 
+- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+
+If your host operating system **is** Windows: 
+- [vagrant-guest_ansible](https://github.com/vovimayhem/vagrant-guest_ansible)
+
+### Installation
+
+- clone repository
+```sh
+git clone git@github.com:marie230/DevOpsCrudApp.git
+```
+- change to the `/infrastructure` directory
+```sh
+cd infrastructure
+```
+- create and configure guest machines according to the Vagrantfile
+```sh
+vagrant up
+```
+
+---
 
 ## Setup to run the app locally
 
@@ -14,21 +47,27 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Installation
   
+- clone repository
 ```sh
-# clone repository
 git clone git@github.com:marie230/DevOpsCrudApp.git
-# change to the /app directory
+```
+- change to the `/app` directory
+```sh
 cd app
-# install dependencies
+```
+- install dependencies
+```sh
 npm install
 ```
 
 ## Development server 
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.
+
 ### Start frontend and backend simultaneously
 
 - Run `npm start` for a dev server.
-- Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. This can take more time than starting frontend and backend separately in different terminals. 
 
 ### Start frontend only
 
