@@ -37,7 +37,24 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy') {
+        stage ('Deploy to Development Environment') {
+            when{
+                branch 'development'
+            }
+            steps {
+                dir('infrastructure') {
+                    ansiblePlaybook(
+                        playbook: 'ansible/deploy-to-development-environment.yml',
+                        inventory: 'ansible/inventory',
+                        disableHostKeyChecking: true
+                    )
+                }
+            }
+        }
+        stage ('Deploy to Production Environment') {
+            when{
+                branch 'master'
+            }
             steps {
                 dir('infrastructure') {
                     ansiblePlaybook(
@@ -46,12 +63,6 @@ pipeline {
                         disableHostKeyChecking: true
                     )
                 }
-            }
-        }
-        stage ('Done') {
-            steps {
-               echo 'TODO'
-               print('Successfully deployed!')
             }
         }
     }
