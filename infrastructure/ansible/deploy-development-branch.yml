@@ -1,5 +1,5 @@
 ---
-- name: Deploy application from DEVELOPMENT branch to development environment
+- name: Deploy application from DEVELOPMENT branch to DEVELOPMENT environment
   hosts: development
 
   vars:
