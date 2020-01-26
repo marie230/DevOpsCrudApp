@@ -45,7 +45,7 @@ pipeline {
             steps {
                 dir('infrastructure') {
                     ansiblePlaybook(
-                        playbook: 'ansible/deploy-to-' + GIT_BRANCH + '-environment.yml',
+                        playbook: 'ansible/deploy-' + GIT_BRANCH + '-branch.yml',
                         inventory: 'ansible/inventory',
                         disableHostKeyChecking: true
                     )

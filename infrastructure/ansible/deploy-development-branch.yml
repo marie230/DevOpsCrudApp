@@ -1,18 +1,18 @@
 ---
-- name: Deploy application to production environment
-  hosts: production
+- name: Deploy application from DEVELOPMENT branch to development environment
+  hosts: development
 
   vars:
-    server_name: hero-app-production.de
+    server_name: hero-app-development.de
     root_dir: /var/www/apps/dist
 
   tasks:
-    - name: Check for /var/www/apps directory
+    - name: Deploy to DEVELOPMENT environment | Check for /var/www/apps directory
       stat:
         path: /var/www/apps
       register: apps_dir
 
-    - name: Create /var/www/apps directory if not exists
+    - name: Deploy to DEVELOPMENT environment | Create /var/www/apps directory if not exists
       file:
         path: /var/www/apps
         state: directory
@@ -20,85 +20,85 @@
       when: apps_dir.stat.exists == false
       become: yes
 
-    - name: Copy crud-app.zip to production host
+    - name: Deploy to DEVELOPMENT environment | Copy crud-app.zip to development host
       copy:
-        src: /var/lib/jenkins/jobs/Production/workspace/app/crud-app.zip
+        src: /var/lib/jenkins/jobs/Development/workspace/app/crud-app.zip
         dest: /var/www/apps
         mode: 755
       become: yes
 
-    - name: Remove crud-app dist directory if exists
+    - name: Deploy to DEVELOPMENT environment | Remove crud-app dist directory if exists
       file:
         path: /var/www/apps/dist
         state: absent
       become: yes
 
-    - name: Unzip crud-app
+    - name: Deploy to DEVELOPMENT environment | Unzip crud-app
       unarchive:
         src:  /var/www/apps/crud-app.zip
         dest: /var/www/apps
         remote_src: yes
       become: yes
 
-    - name: Add config template to nginx available sites
+    - name: Deploy to DEVELOPMENT environment | Add config template to nginx available sites
       template:
         src: nginx.conf
         dest: "/etc/nginx/sites-available/{{ server_name }}.conf"
       become: yes
 
-    - name: Enable config template from nginx available sites
+    - name: Deploy to DEVELOPMENT environment | Enable config template from nginx available sites
       file:
         src: "/etc/nginx/sites-available/{{ server_name }}.conf"
         dest: "/etc/nginx/sites-enabled/{{ server_name }}.conf"
         state: link
       become: yes
 
-    - name: Add enabled nginx site to /etc/hosts
+    - name: Deploy to DEVELOPMENT environment | Add enabled nginx site to /etc/hosts
       lineinfile:
         dest: /etc/hosts
         regexp: "{{ server_name }}"
         line: "127.0.0.1 {{ server_name }}"
       become: yes
 
-    - name: Restart nginx
+    - name: Deploy to DEVELOPMENT environment | Restart nginx
       service:
         name: nginx
         state: restarted
       become: yes
 
-    - name: Copy server.zip dir to production host
+    - name: Deploy to DEVELOPMENT environment | Copy server.zip dir to development host
       copy:
-        src: /var/lib/jenkins/jobs/Production/workspace/app/server.zip
+        src: /var/lib/jenkins/jobs/Development/workspace/app/server.zip
         dest: /var/www/apps
         mode: 755
       become: yes
 
-    - name: Remove crud-app server directory if exists
+    - name: Deploy to DEVELOPMENT environment | Remove crud-app server directory if exists
       file:
         path: /var/www/apps/server
         state: absent
       become: yes
 
-    - name: Unzip crud-app server
+    - name: Deploy to DEVELOPMENT environment | Unzip crud-app server
       unarchive:
         src:  /var/www/apps/server.zip
         dest: /var/www/apps
         remote_src: yes
       become: yes
 
-    - name: Install server packages based on package.json
+    - name: Deploy to DEVELOPMENT environment | Install server packages based on package.json
       npm:
         path: /var/www/apps/server
       become: yes
 
-    - name: Stop old PM2 server process if present
-      command: pm2 stop server.js
+    - name: Deploy to DEVELOPMENT environment | Stop old PM2 server process if present
+      command: pm2 stop all
       args:
         chdir:  /var/www/apps/server
       ignore_errors: yes
       become: yes
 
-    - name: Delete old PM2 server process if present
+    - name: Deploy to DEVELOPMENT environment | Delete old PM2 server process if present
       command: pm2 delete all
       args:
         chdir:  /var/www/apps/server
@@ -107,7 +107,7 @@
 
       # load balancing: "-i 2" starts pm2 with 2 instances
       # see pm2 docs: https://pm2.io/docs/runtime/guide/load-balancing/
-    - name: Start server with PM2
+    - name: Deploy to DEVELOPMENT environment | Start server with PM2
       command:  pm2 start server.js -i 2
       args:
         chdir:  /var/www/apps/server
