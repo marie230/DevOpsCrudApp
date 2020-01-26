@@ -60,7 +60,7 @@ At first you need to clone the repository.
 git clone git@github.com:marie230/DevOpsCrudApp.git
 ```
 #### Step 2
-Next, change to the `/infrastructure` directory.
+Next, change to the `/infrastructure` directory in the cloned app.
 ```sh
 cd infrastructure
 ```
@@ -100,17 +100,17 @@ Go to http://localhost:8080 on the created VM ``jenkins-monitoring-vm``.
 There, you can login with the username `admin` and password `admin`.
 
 If you've pushed something to the ``development`` branch, open:
-- http://localhost:8080/job/Development/
+- http://localhost:8080/job/Development/  
 On this link you can see the deployment pipeline for the ``development environment`` running.
 
 If you've pushed something to the ``master`` branch, open:
-- http://localhost:8080/job/Production/
+- http://localhost:8080/job/Production/  
 On this link you can see the deployment pipeline for the ``production environment`` running.
 
 #### Step 6
 If the Jenkins Pipeline has finished running and the deployment was completed successfully, you can go to
-- ``http://hero-app-development.de/`` on the created VM ``development-environment`` if you have deployed to this environment
-- ``http://hero-app-production.de/`` on the created VM ``production-environment`` if you have deployed to this environment
+- http://hero-app-development.de/ on the created VM ``development-environment`` if you have deployed to this environment
+- http://hero-app-production.de/ on the created VM ``production-environment`` if you have deployed to this environment
 
 #### Step 7
 To see the monitoring metrics recorded with ``Prometheus``, you can go to http://localhost:3000/dashboards on 
