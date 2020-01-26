@@ -5,13 +5,67 @@ Visit the [Wiki](https://github.com/marie230/DevOpsCrudApp/wiki) for more inform
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.17.
 
-## Setup
-Navigate to the `/app` directory of the project.
-Run `npm install` in order to install the required dependencies.
+## Setup to run the app locally
 
-## Development server
+### Requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- [NodeJS](https://nodejs.org/en/download/) with npm
+- [mongoDB](https://www.mongodb.com/download-center/community)
+
+### Installation
+  
+```sh
+# clone repository
+git clone git@github.com:marie230/DevOpsCrudApp.git
+# change to the /app directory
+cd app
+# install dependencies
+npm install
+```
+
+## Development server 
+
+### Start frontend and backend simultaneously
+
+- Run `npm start` for a dev server.
+- Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Start frontend only
+
+- Run `npm client` or `ng serve` for a dev server. 
+- Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Start backend only
+
+- Run `npm run server` for a dev server.
+- You can test the server at `http://localhost:1234/api/heroes`. The app will automatically reload if you change any of the source files.
+
+#### Backend REST API endpoints
+
+- GET `http://localhost:1234/api/heroes` --> get all heroes from the database
+- GET `http://localhost:1234/api/heroes/1` --> get single hero with given id (e.g. 1)
+- POST `http://localhost:1234/api/heroes/` --> post single hero using the following JSON as body
+
+```sh
+{
+"name": "Example Hero",
+"imageUrl": "https://example-url.jpg",
+"superPower": "example superpower",
+"description": "example description"
+}
+```
+- PUT `http://localhost:1234/api/heroes/1` --> update single hero with given id (e.g. 1) using the following JSON as body
+
+```sh
+{
+"name": "Example Hero",
+"imageUrl": "https://example-url.jpg",
+"superPower": "example superpower",
+"description": "example description"
+}
+```
+
+- DELETE `http://localhost:1234/api/heroes/1` --> delete single hero with given id (e.g. 1)
 
 ## Code scaffolding
 
@@ -38,22 +92,25 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ```bash
 .                                              
 ├── app                       # source files 
-│   ├── db                     # database models               
-│   ├── routes                 # backend routing logic
-│   ├── server                 # backend server configuration
-│   ├── dist                   # bundled files to deploy            
-│   ├── src                    # app files 
-│       ├── app                 # app with all components
-│       ├── main.ts             # bootstrapping configuration
-│       └── test.ts             # test configuration
+│   ├── dist                   # bundled frontend files to deploy            
+│   ├── server                 # backend server configuration 
+│   |    ├── db                  # database models
+│   |    ├── routes              # backend routing logic
+│   |    └── package.json        # contains all backend depencencies
+│   ├── src                    # frontend app files 
+│   |    ├── app                 # frontend app with all components
+│   |    ├── main.ts             # bootstrapping configuration
+│   |    └── test.ts             # test configuration
 │   ├── karma.conf.js          # test framework configuration
-│   ├── tsconfig.json
-│   ├── yarn.lock
-│   └── package.json   
-├── infrastructure
-│   ├── ansible                # playbooks to configue vm's
-│       └── tasks               # tasks used in the ansible playbooks
-│   ├── Jenkinsfile            # Jenkins pipeline
+│   ├── tsconfig.json          # specifies the root files and the compiler options required to compile the project
+│   ├── yarn.lock              # stores exactly which versions of each dependencies were installed
+│   └── package.json           # contains all frontend depencencies
+├── infrastructure           # infrasturcture files for configuration
+│   ├── ansible                # playbooks and configuration files to configure vm's
+│   |    ├── monitoring          # configuration files for monitoring
+│   |    ├── roles               # roles used in the ansible playbooks
+│   |    └── tasks               # tasks used in the ansible playbooks
 │   └── Vagrantfile            # provisioning of VMs
+├── Jenkinsfile              # Jenkins pipeline configuration   
 └── README.md 
 ```
