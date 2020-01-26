@@ -51,7 +51,7 @@ If your host operating system **is** Windows:
 
 ### Installation
 
-A step by step guideline how to get the application running on the development and production environment in different virtual machined provisioned with `Vagrant`.
+A step by step guideline how to get the application running on the development and production environment in different virtual machines (VM's) provisioned with `Vagrant`.
 
 
 #### Step 1
