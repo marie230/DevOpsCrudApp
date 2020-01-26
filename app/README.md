@@ -55,10 +55,16 @@ A step by step guideline how to get the application running on the development a
 
 
 #### Step 1
-At first you need to clone the repository.
+First, if you are a collaborator of this repository, you need to clone the repository.
 ```sh
 git clone git@github.com:marie230/DevOpsCrudApp.git
 ```
+
+**Note:** You can only push code to this repository if you are a collaborator. If you're not a collaborator, I'd recommend you to download the repository instead and create your own repository with this code.
+```sh
+https://github.com/marie230/DevOpsCrudApp/archive/master.zip
+```
+
 #### Step 2
 Next, change to the `/infrastructure` directory in the cloned app.
 ```sh

@@ -60,12 +60,6 @@
     enabled: true
     state: started
 
-#- name: Grafana | Check if Grafana is accessible
-#  uri:
-#    url: http://localhost:3000
-#    method: GET
-#    status_code: 200
-
 - name: Grafana | Add Prometheus as datasource to Grafana
   grafana_datasource:
     name: Prometheus
