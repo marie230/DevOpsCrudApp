@@ -92,7 +92,14 @@
       become: yes
 
     - name: Stop old PM2 server process if present
-      command: pm2 stop server.js
+      command: pm2 stop all
+      args:
+        chdir:  /var/www/apps/server
+      ignore_errors: yes
+      become: yes
+
+    - name: Delete old PM2 server process if present
+      command: pm2 delete all
       args:
         chdir:  /var/www/apps/server
       ignore_errors: yes
