@@ -98,6 +98,13 @@
       ignore_errors: yes
       become: yes
 
+    - name: Delete old PM2 server process if present
+      command: pm2 delete all
+      args:
+        chdir:  /var/www/apps/server
+      ignore_errors: yes
+      become: yes
+
       # load balancing: "-i 2" starts pm2 with 2 instances
       # see pm2 docs: https://pm2.io/docs/runtime/guide/load-balancing/
     - name: Start server with PM2
