@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy to Development Environment') {
+        stage ('Deploy') {
             when{
                 branch 'development'
             }
@@ -50,8 +50,6 @@ pipeline {
                     )
                 }
             }
-        }
-        stage ('Deploy to Production Environment') {
             when{
                 branch 'master'
             }
