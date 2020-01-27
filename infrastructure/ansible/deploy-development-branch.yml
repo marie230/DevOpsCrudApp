@@ -91,13 +91,6 @@
         path: /var/www/apps/server
       become: yes
 
-    - name: Deploy to DEVELOPMENT environment | Stop old PM2 server process if present
-      command: pm2 stop all
-      args:
-        chdir:  /var/www/apps/server
-      ignore_errors: yes
-      become: yes
-
     - name: Deploy to DEVELOPMENT environment | Delete old PM2 server process
       command: pm2 kill
       ignore_errors: yes
