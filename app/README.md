@@ -10,22 +10,22 @@ Visit the [Wiki](https://github.com/marie230/DevOpsCrudApp/wiki) for more inform
 ├── app                       # source files 
 │   ├── dist                   # bundled frontend files to deploy            
 │   ├── server                 # backend server configuration 
-│   |    ├── db                  # database models
-│   |    ├── routes              # backend routing logic
-│   |    └── package.json        # contains all backend depencencies
+│   │    ├── db                  # database models
+│   │    ├── routes              # backend routing logic
+│   │    └── package.json        # contains all backend depencencies
 │   ├── src                    # frontend app files 
-│   |    ├── app                 # frontend app with all components
-│   |    ├── main.ts             # bootstrapping configuration
-│   |    └── test.ts             # test configuration
+│   │    ├── app                 # frontend app with all components
+│   │    ├── main.ts             # bootstrapping configuration
+│   │    └── test.ts             # test configuration
 │   ├── karma.conf.js          # test framework configuration
 │   ├── tsconfig.json          # specifies root files & compiler options required to compile the project
 │   ├── yarn.lock              # stores exactly which versions of each dependencies were installed
 │   └── package.json           # contains all frontend depencencies
 ├── infrastructure           # infrasturcture files for configuration
 │   ├── ansible                # playbooks and configuration files to configure vm's
-│   |    ├── monitoring          # configuration files for monitoring
-│   |    ├── roles               # roles used in the ansible playbooks
-│   |    └── tasks               # tasks used in the ansible playbooks
+│   │    ├── monitoring          # configuration files for monitoring
+│   │    ├── roles               # roles used in the ansible playbooks
+│   │    └── tasks               # tasks used in the ansible playbooks
 │   └── Vagrantfile            # provisioning of VMs
 ├── Jenkinsfile              # Jenkins pipeline configuration   
 └── README.md 
@@ -51,8 +51,7 @@ If your host operating system **is** Windows:
 
 ### Installation
 
-A step by step guideline how to get the application running on the development and production environment in different virtual machines (VM's) provisioned with `Vagrant`.
-
+A step by step guideline on how to get the application running on the development and production environment in different virtual machines (VM's) provisioned with `Vagrant`.
 
 #### Step 1
 First, if you are a collaborator of this repository, you need to clone the repository.
@@ -66,13 +65,14 @@ https://github.com/marie230/DevOpsCrudApp/archive/master.zip
 ```
 
 #### Step 2
-Next, change to the `/infrastructure` directory in the cloned app.
+Next, change to the `/infrastructure` directory of the cloned or downloaded and unzipped app.
 ```sh
 cd infrastructure
 ```
 
 #### Step 3
-Now, you can create and configure guest machines according to the `Vagrantfile`. The `Vagrantfile` is using `Shell` & `Ansible` as provisioner to install the required software and packages on the machines.
+Now, you can create and configure guest machines according to the `Vagrantfile`. The `Vagrantfile` is using `Shell` & `Ansible` as provisioner to install the required software and packages on the machines.  
+The only thing you have to do is to execute the following command:
 ```sh
 vagrant up
 ```
@@ -80,9 +80,12 @@ vagrant up
 You can login to all of the created VM's with the user ``vagrant`` and the password ``vagrant``.
 
 #### Step 4
-Now, you can commit and push changes via git on the `development` or `master` branch. In this example, the development branch is used. If you want to push changes to the `master` branch, you can specify it instead of the `development` branch in the following code guideline.  
+Now, you can commit and push changes via git to the `development` or `master` branch.   
+
 If you push something to the ``development`` branch, it will deploy to the ``Development Environment``.  
 If you push something to the ``master`` branch, it will deploy to the ``Production Environment``.
+
+In the following example, the ``development`` branch is used. If you want to push changes to the `master` branch, you can specify it instead of the `development` branch.  
 
 ```sh
 # checkout development branch 
@@ -102,8 +105,9 @@ git push
 ```
 
 #### Step 5
-Go to http://localhost:8080 on the created VM ``jenkins-monitoring-vm``.
-There, you can login with the username `admin` and password `admin`.
+After you've successfully pushed changes to the ``development`` or ``master`` branch, 
+go to http://localhost:8080 on the created VM ``jenkins-monitoring-vm``.
+You can login to Jenkins with the username `admin` and password `admin`.
 
 If you've pushed something to the ``development`` branch, open:
 - http://localhost:8080/job/Development/  
@@ -115,24 +119,30 @@ On this link you can see the deployment pipeline for the ``production environmen
 
 #### Step 6
 If the Jenkins Pipeline has finished running and the deployment was completed successfully, you can go to
-- http://hero-app-development.de/ on the created VM ``development-environment`` if you have deployed to this environment
-- http://hero-app-production.de/ on the created VM ``production-environment`` if you have deployed to this environment
+- http://hero-app-development.de/ on the created VM ``development-environment`` if you have deployed to the ``development environment``.
+- http://hero-app-production.de/ on the created VM ``production-environment`` if you have deployed to the ``production environment``.
 
 #### Step 7
-To see the monitoring metrics recorded with ``Prometheus``, you can go to http://localhost:3000/dashboards on 
+To see a visualisation of the monitoring metrics recorded with ``Prometheus``, you can go to http://localhost:3000/dashboards on 
 the created VM ``jenkins-monitoring-vm`` and click on the ``Grafana`` Dashboard ``Node Exporter Full``.
 The ``Node Exporter Full`` dashboard contains relevant information on all created VM's. You can change
 a VM if you select it in the "Job" Dropdown-Select.  
 You can login to Grafana with the user ``admin`` and password ``admin``.
 
+### Load Balancing
+As the backend of the application uses PM2 as process manager, the integrated [Cluster Mode](https://pm2.io/docs/runtime/guide/load-balancing/) is used for load balancing which enables horizontal scaling and redundancy. The application is running with 2 instances on each environment using the same database.
+
 ### Notes
 Ansible Roles used for provisioning that were not written by myself:
-- [Jenkins](https://github.com/geerlingguy/ansible-role-jenkins)
+- [Geerlingguy Jenkins](https://github.com/geerlingguy/ansible-role-jenkins)
   - This role was extended to create 2 Jenkins pipelines for the development and production environment.
-- [Java](https://github.com/geerlingguy/ansible-role-java)
+- [Geerlingguy Java](https://github.com/geerlingguy/ansible-role-java)
 ---
 
 ## Setup to run the app locally
+
+Using this setup, you can run the app locally on your host system with a development server. 
+It can be used to test the application before deploying it to the Vagrant boxes. (see [Setup for deployment with Vagrant VM's](https://github.com/marie230/DevOpsCrudApp/tree/development#setup-for-deployment-with-vagrant-vms))
 
 ### Requirements
 
@@ -141,15 +151,18 @@ Ansible Roles used for provisioning that were not written by myself:
 
 ### Installation
   
-- clone repository
+#### Step 1
+clone repository
 ```sh
 git clone git@github.com:marie230/DevOpsCrudApp.git
 ```
-- change to the `/app` directory
+#### Step 2
+change to the `/app` directory
 ```sh
 cd app
 ```
-- install dependencies
+#### Step 3
+install dependencies
 ```sh
 npm install
 ```
@@ -161,7 +174,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 #### Start frontend and backend simultaneously
 
 - Run `npm start` for a dev server.
-- Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. This can take more time than starting frontend and backend separately in different terminals. 
+- Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. This can take more time than starting the front- and backend separately in different terminals. 
 
 #### Start frontend only
 
@@ -173,21 +186,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Run `npm run server` for a dev server.
 - You can test the server at `http://localhost:1234/api/heroes`. The app will automatically reload if you change any of the source files.
 
-##### Backend REST API endpoints
+### Backend REST API endpoints
 
-- GET `http://localhost:1234/api/heroes` --> get all heroes from the database
-- GET `http://localhost:1234/api/heroes/1` --> get single hero with given id (e.g. 1)
-- POST `http://localhost:1234/api/heroes/` --> post single hero using the following JSON as body
-
-```sh
-{
-"name": "Example Hero",
-"imageUrl": "https://example-url.jpg",
-"superPower": "example superpower",
-"description": "example description"
-}
-```
-- PUT `http://localhost:1234/api/heroes/1` --> update single hero with given id (e.g. 1) using the following JSON as body
+- **GET** `http://localhost:1234/api/heroes` --> get all heroes from the database
+- **GET** `http://localhost:1234/api/heroes/1` --> get single hero with given id (e.g. 1)
+- **POST** `http://localhost:1234/api/heroes/` --> post single hero using the following JSON as body
 
 ```sh
 {
@@ -197,8 +200,18 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 "description": "example description"
 }
 ```
+- **PUT** `http://localhost:1234/api/heroes/1` --> update single hero with given id (e.g. 1) using the following JSON as body
 
-- DELETE `http://localhost:1234/api/heroes/1` --> delete single hero with given id (e.g. 1)
+```sh
+{
+"name": "Example Hero",
+"imageUrl": "https://example-url.jpg",
+"superPower": "example superpower",
+"description": "example description"
+}
+```
+
+- **DELETE** `http://localhost:1234/api/heroes/1` --> delete single hero with given id (e.g. 1)
 
 ### Code scaffolding
 
