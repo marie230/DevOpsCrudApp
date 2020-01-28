@@ -49,7 +49,7 @@ If your host operating system **is any other than** Windows:
 If your host operating system **is** Windows: 
 - [vagrant-guest_ansible](https://github.com/vovimayhem/vagrant-guest_ansible)
 
-### Installation
+### How to use
 
 A step by step guideline on how to get the application running on the development and production environment in different virtual machines (VM's) provisioned with `Vagrant`.
 
@@ -111,16 +111,16 @@ You can login to Jenkins with the username `admin` and password `admin`.
 
 If you've pushed something to the ``development`` branch, open:
 - http://localhost:8080/job/Development/  
-On this link you can see the deployment pipeline for the ``development environment`` running.
+On this link you can see the deployment pipeline for the ``Development Environment`` running.
 
 If you've pushed something to the ``master`` branch, open:
 - http://localhost:8080/job/Production/  
-On this link you can see the deployment pipeline for the ``production environment`` running.
+On this link you can see the deployment pipeline for the ``Production Environment`` running.
 
 #### Step 6
 If the Jenkins Pipeline has finished running and the deployment was completed successfully, you can go to
-- http://hero-app-development.de/ on the created VM ``development-environment`` if you have deployed to the ``development environment``.
-- http://hero-app-production.de/ on the created VM ``production-environment`` if you have deployed to the ``production environment``.
+- http://hero-app-development.de/ on the created VM ``development-environment`` if you have deployed to the ``Development Environment``.
+- http://hero-app-production.de/ on the created VM ``production-environment`` if you have deployed to the ``Production Environment``.
 
 #### Step 7
 To see a visualisation of the monitoring metrics recorded with ``Prometheus``, you can go to http://localhost:3000/dashboards on 
